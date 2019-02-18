@@ -1,0 +1,18 @@
+#! /usr/bin/env python2.7
+
+from argparse import ArgumentParser
+from tcp_lamp.client import start, stop
+
+
+if __name__ == '__main__':
+    parser = ArgumentParser(description="Online lamp")
+    parser.add_argument('--host', metavar='HOST', type=str, default="127.0.0.1", help="server host to connect")
+    parser.add_argument('--port', metavar='PORT', type=int, default=9999, help="server port to connect")
+    args = parser.parse_args()
+
+    print('Press Ctrl+C for exit.')
+    try:
+        start(args.host, args.port)
+    except KeyboardInterrupt:
+        stop()
+
